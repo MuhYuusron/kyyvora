@@ -47,7 +47,7 @@ function About() {
           >
             {!imageError ? (
               <img 
-                src="/foto/tentang.png" 
+                src="/Foto/tentang.png" 
                 alt="Tentang Kyyvora" 
                 className="about-image-img"
                 onError={() => setImageError(true)}

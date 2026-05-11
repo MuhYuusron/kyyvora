@@ -10,13 +10,26 @@ function Hero() {
   const { content } = useContent();
   const [ballpitError, setBallpitError] = useState(false);
   const [showBallpit, setShowBallpit] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
     // Delay ballpit initialization to ensure DOM is ready
     const timer = setTimeout(() => {
       setShowBallpit(true);
     }, 100);
-    return () => clearTimeout(timer);
+    
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   return (
@@ -67,7 +80,7 @@ function Hero() {
         </div>
         
         <div className="hero-decoration-3d">
-          {!ballpitError && showBallpit ? (
+          {!isMobile && !ballpitError && showBallpit ? (
             <div className="ballpit-container">
               <Ballpit
                 count={50}
