@@ -1,0 +1,169 @@
+.admin-dashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.admin-sidebar {
+  width: 280px;
+  background-color: #000;
+  color: #fff;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+}
+
+.sidebar-header {
+  background-color: #FFE500;
+  color: #000;
+  padding: 30px 20px;
+  border-bottom: 4px solid #000;
+}
+
+.sidebar-header h2 {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 20px 0;
+}
+
+.nav-item {
+  width: 100%;
+  padding: 18px 25px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.nav-item:hover {
+  background-color: #222;
+  padding-left: 30px;
+}
+
+.nav-item.active {
+  background-color: #FFE500;
+  color: #000;
+  border-left: 6px solid #FF6B6B;
+}
+
+.logout-btn {
+  margin: 20px;
+  background-color: #FF6B6B;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.admin-content {
+  margin-left: 280px;
+  flex: 1;
+  padding: 40px;
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.content-header h1 {
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.save-btn {
+  background-color: #00F0FF;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+}
+
+.edit-form {
+  max-width: 1200px;
+}
+
+.form-section {
+  background-color: #fff;
+  padding: 40px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 900;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.form-group .form-input {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  font-family: inherit;
+  font-weight: 600;
+  background-color: #fff;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.services-grid-admin {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.service-edit-card {
+  padding: 30px;
+}
+
+.color-input {
+  width: 100%;
+  height: 50px;
+  border: 4px solid #000;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .admin-sidebar {
+    width: 100%;
+    position: relative;
+    height: auto;
+  }
+
+  .admin-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .content-header {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+}
