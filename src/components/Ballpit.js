@@ -193,6 +193,10 @@ class x {
   }
   
   #b() {
+    if (!this.renderer) {
+      console.warn('Three: Renderer not available, skipping setSize');
+      return;
+    }
     this.renderer.setSize(this.size.width, this.size.height);
     this.#t?.setSize(this.size.width, this.size.height);
     let e = window.devicePixelRatio;
@@ -238,6 +242,10 @@ class x {
   }
   
   #i() {
+    if (!this.renderer) {
+      console.warn('Three: Renderer not available, skipping render');
+      return;
+    }
     this.renderer.render(this.scene, this.camera);
   }
   
@@ -696,6 +704,13 @@ function createBallpit(e, t = {}) {
     size: 'parent',
     rendererOptions: { antialias: true, alpha: true }
   });
+  
+  // Check if renderer was created successfully
+  if (!i.renderer) {
+    console.error('Three: Failed to initialize WebGL renderer');
+    throw new Error('WebGL not supported');
+  }
+  
   let s;
   i.renderer.toneMapping = v;
   i.camera.position.set(0, 0, 20);
@@ -761,14 +776,30 @@ function createBallpit(e, t = {}) {
 const Ballpit = ({ className = '', followCursor = true, ...props }) => {
   const canvasRef = useRef(null);
   const spheresInstanceRef = useRef(null);
+  const hasErrorRef = useRef(false);
   
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    spheresInstanceRef.current = createBallpit(canvas, { followCursor, ...props });
+    if (!canvas || hasErrorRef.current) return;
+    
+    try {
+      spheresInstanceRef.current = createBallpit(canvas, { followCursor, ...props });
+    } catch (error) {
+      console.error('Ballpit initialization failed:', error);
+      hasErrorRef.current = true;
+      // Trigger parent error handler if provided
+      if (props.onError) {
+        props.onError(error);
+      }
+    }
+    
     return () => {
       if (spheresInstanceRef.current) {
-        spheresInstanceRef.current.dispose();
+        try {
+          spheresInstanceRef.current.dispose();
+        } catch (error) {
+          console.error('Ballpit disposal failed:', error);
+        }
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

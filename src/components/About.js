@@ -17,43 +17,20 @@ function About() {
   return (
     <section id="about" className="about">
       <div className="about-content">
-        <motion.div 
-          className="about-text"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+        <motion.h2 
+          className="section-title"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="section-title">{content.about.title}</h2>
-          <p className="about-description">
-            {content.about.description}
-          </p>
-          <div className="stats">
-            {content.about.stats.map((stat, index) => (
-              <motion.div 
-                key={index}
-                className="stat-item neo-brutal-border"
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ 
-                  scale: 1.1,
-                  rotate: [0, -5, 5, 0],
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <div className="stat-icon">{statsIcons[index]}</div>
-                <div className="stat-number">{stat.number}</div>
-                <div className="stat-label">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+          {content.about.title}
+        </motion.h2>
+
         <motion.div 
           className="about-image"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
@@ -91,6 +68,38 @@ function About() {
             )}
           </motion.div>
         </motion.div>
+
+        <motion.p 
+          className="about-description"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          {content.about.description}
+        </motion.p>
+
+        <div className="stats">
+          {content.about.stats.map((stat, index) => (
+            <motion.div 
+              key={index}
+              className="stat-item neo-brutal-border"
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ 
+                scale: 1.1,
+                rotate: [0, -5, 5, 0],
+                transition: { duration: 0.3 }
+              }}
+            >
+              <div className="stat-icon">{statsIcons[index]}</div>
+              <div className="stat-number">{stat.number}</div>
+              <div className="stat-label">{stat.label}</div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
