@@ -135,7 +135,7 @@
   cursor: grab;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   user-select: none;
-  touch-action: none;
+  touch-action: auto;
 }
 
 .fallback-icon:active {
