@@ -720,7 +720,6 @@ function createBallpit(e, t = {}) {
   const o = new w(new a(0, 0, 1), 0);
   const r = new a();
   let c = false;
-  e.style.touchAction = 'none';
   e.style.userSelect = 'none';
   e.style.webkitUserSelect = 'none';
   const h = S({

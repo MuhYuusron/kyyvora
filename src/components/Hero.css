@@ -109,6 +109,11 @@
   height: 100%;
   position: relative;
   overflow: visible;
+  pointer-events: none;
+}
+
+.ballpit-container canvas {
+  pointer-events: none;
 }
 
 .ballpit-fallback {
@@ -323,18 +328,21 @@
     top: 0;
     left: 0;
     overflow: visible !important;
+    pointer-events: none !important;
   }
 
   .ballpit-container canvas {
     width: 100% !important;
     height: 100% !important;
     display: block !important;
+    pointer-events: none !important;
   }
 
   .ballpit-fallback {
     gap: 20px;
     flex-wrap: wrap;
     padding: 20px;
+    pointer-events: auto;
   }
 
   .fallback-icon {
