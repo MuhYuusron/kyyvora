@@ -15,26 +15,20 @@ function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Format pesan untuk WhatsApp dengan tampilan yang lebih profesional
+    // Format pesan untuk WhatsApp dengan format yang sederhana
     const whatsappNumber = content.contact.whatsapp.replace(/[^0-9]/g, '');
     
-    // Membuat pesan dengan format yang rapi dan profesional
-    const greeting = `*Halo Tim Kyyvora!* 👋%0A`;
-    const separator = `━━━━━━━━━━━━━━━━━━━━━%0A`;
-    const intro = `Saya tertarik dengan layanan Anda dan ingin berkonsultasi lebih lanjut.%0A%0A`;
+    // Membuat pesan dengan format sederhana (tanpa encoding dulu)
+    const message = `Halo Kyyvora!
+Saya tertarik dengan layanan Anda.
+
+Saya *${formData.name}* ingin bertanya tentang layanan *${formData.service}*
+
+Detail Kebutuhan :
+${formData.message}`;
     
-    const nameSection = `📋 *Informasi Kontak*%0A${separator}`;
-    const nameInfo = `👤 Nama: *${formData.name}*%0A%0A`;
-    
-    const serviceSection = `🎯 *Layanan yang Diminati*%0A${separator}`;
-    const serviceInfo = `${getServiceEmoji(formData.service)} ${formData.service}%0A%0A`;
-    
-    const messageSection = `💬 *Detail Kebutuhan*%0A${separator}`;
-    const messageInfo = `${formData.message}%0A%0A`;
-    
-    const closing = `${separator}%0A_Terima kasih atas perhatiannya. Saya menunggu respons dari Anda!_ 🙏`;
-    
-    const whatsappMessage = greeting + separator + intro + nameSection + nameInfo + serviceSection + serviceInfo + messageSection + messageInfo + closing;
+    // Encode message untuk URL
+    const whatsappMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
     
     // Buka WhatsApp di tab baru
@@ -46,22 +40,6 @@ function Contact() {
       service: '',
       message: ''
     });
-  };
-
-  // Fungsi untuk mendapatkan emoji sesuai jenis layanan
-  const getServiceEmoji = (service) => {
-    switch(service) {
-      case 'Pembuatan Website':
-        return '💻';
-      case 'Undangan Digital':
-        return '💌';
-      case 'Konsultasi':
-        return '🤝';
-      case 'Lainnya':
-        return '📦';
-      default:
-        return '✨';
-    }
   };
 
   const handleChange = (e) => {

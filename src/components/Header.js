@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { FaBars, FaTimes, FaRocket } from 'react-icons/fa';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,14 +16,6 @@ function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const scrollToServices = () => {
-    const servicesSection = document.getElementById('services');
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    setIsOpen(false);
-  };
 
   return (
     <motion.header 
@@ -111,17 +103,6 @@ function Header() {
           <span className="nav-link-text">KONTAK</span>
           <span className="nav-link-bg"></span>
         </motion.a>
-        <motion.button
-          className="nav-cta-button"
-          onClick={scrollToServices}
-          whileHover={{ 
-            scale: 1.05,
-            boxShadow: '0 0 25px rgba(255, 215, 0, 0.6)'
-          }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <FaRocket /> CEK LAYANAN
-        </motion.button>
       </nav>
     </motion.header>
   );
